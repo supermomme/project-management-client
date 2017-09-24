@@ -6,14 +6,6 @@ import { NgbModule, NgbTooltipConfig } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from "@angular/router";
 import { Ng2DragDropModule } from 'ng2-drag-drop';
 import { SidebarModule } from 'ng-sidebar';
-import {
-  AccordionModule,
-  MenubarModule,
-  ButtonModule,
-  ContextMenuModule,
-  MegaMenuModule,
-  TabMenuModule
-} from 'primeng/primeng';
 
 @NgModule({
   imports: [
@@ -23,14 +15,7 @@ import {
     NgbModule.forRoot(),
     RouterModule,
     Ng2DragDropModule.forRoot(),
-    SidebarModule.forRoot(),
-    AccordionModule,
-    MenubarModule,
-    ButtonModule,
-    ContextMenuModule,
-    MegaMenuModule,
-    TabMenuModule
-
+    SidebarModule.forRoot()
   ],
   exports: [
     CommonModule,
@@ -39,13 +24,7 @@ import {
     ToastrModule,
     RouterModule,
     Ng2DragDropModule,
-    SidebarModule,
-    AccordionModule,
-    MenubarModule,
-    ButtonModule,
-    ContextMenuModule,
-    MegaMenuModule,
-    TabMenuModule
+    SidebarModule
   ],
   declarations: []
 })
