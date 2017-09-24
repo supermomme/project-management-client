@@ -1,0 +1,25 @@
+
+
+    <table class="table table-striped table-hover">
+      <thead class="thead-default">
+        <tr>
+          <th>Shrot Name</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let project of projects">
+        <tr (click)="goToProject(project._id)">
+          <td>{{project.shortName}}</td>
+          <td>{{project.name}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+<div class="card card-outline-warning mt-5">
+  <div class="card-header">
+    <h3>Dev Information Projects</h3>
+  </div>
+  <div class="card-block">
+    <pre>{{projects | json }}</pre>
+  </div>
+</div>

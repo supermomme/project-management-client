@@ -1,0 +1,16 @@
+<div class="container" style="max-width: 350px">
+  <div class="mt-5"></div>
+  <div class="card text-center">
+    <div class="card-block" (keyup.enter)="login()">
+      <h2>Registrieren</h2>
+      <input type="text" class="form-control mb-2 border-top-0 border-left-0 border-right-0" placeholder="Vorname" [(ngModel)]="user.firstname" (ngModelChange)="usernameSuggestionUpdate()" autofocus />
+      <input type="text" class="form-control mb-2 border-top-0 border-left-0 border-right-0" placeholder="Nachname" [(ngModel)]="user.lastname" (ngModelChange)="usernameSuggestionUpdate()" />
+      <input type="text" class="form-control mb-2 border-top-0 border-left-0 border-right-0" placeholder="Username" [(ngModel)]="user.username" placement="bottom" [ngbTooltip]="usernameSuggestion" triggers="focus:blur" />
+      <input type="email" class="form-control mb-2 border-top-0 border-left-0 border-right-0" placeholder="Email Address" [(ngModel)]="user.email" />
+      <input type="password" class="form-control mb-2 border-top-0 border-left-0 border-right-0" placeholder="Password" [(ngModel)]="user.password"/>
+      <input type="password" class="form-control mb-2 border-top-0 border-left-0 border-right-0" placeholder="Confirm Password" [(ngModel)]="user.confirmedPassword"/>
+      <button class="btn btn-success btn-block" (click)="signup()">Registrieren</button>
+      <button class="btn btn-info btn-block" (click)="back()">Schon ein Account? Login</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item" *ngFor="let item of menu">
+    <a class="nav-link" [ngClass]="item.disabled ? 'disabled' : ''" [routerLink]="item.routerLink" routerLinkActive="active">
+      <i class="fa" [ngClass]="item.icon" aria-hidden="true"></i> {{item.label}}
+    </a>
+  </li>
+</ul>
+<router-outlet></router-outlet>

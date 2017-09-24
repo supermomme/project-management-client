@@ -1,0 +1,24 @@
+
+
+<table class="table table-striped table-hover">
+  <thead class="thead-default">
+    <tr>
+      <th>Name</th>
+      <th>Permissions</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let role of roles">
+    <tr (click)="goToRole(role._id)">
+      <td>{{role.name}}</td>
+      <td>{{role.permissions?.length || '0'}}</td>
+    </tr>
+  </tbody>
+</table>
+<div class="card card-outline-warning mt-5">
+  <div class="card-header">
+    <h3>Entwicklerinformationen: Roles</h3>
+  </div>
+  <div class="card-block">
+    <pre>{{roles | json }}</pre>
+  </div>
+</div>

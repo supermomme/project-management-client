@@ -1,0 +1,35 @@
+<ng-sidebar-container style="height: calc(100vh - 56px);">
+  <ng-sidebar [(opened)]="_opened" mode="push">
+    <nav class="navbar navbar-inverse bg-inverse navbar-fixed-side" style="height:100%">
+      <a class="navbar-brand" routerLink="./dashboard">{{project.shortName}}</a>
+      <ul class="nav flex-column">
+        <li class="nav-item" *ngFor="let item of menu">
+          <a class="nav-link" [ngClass]="item.disabled ? 'disabled' : ''" [routerLink]="item.routerLink" routerLinkActive="active">
+            <i class="fa" [ngClass]="item.icon" aria-hidden="true"></i> {{item.label}}
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </ng-sidebar>
+
+  <div ng-sidebar-content>
+    <router-outlet></router-outlet>
+  </div>
+</ng-sidebar-container>
+<!--<div class="row">
+  <div class="col-lg-2">
+    <nav class="navbar navbar-inverse bg-inverse navbar-fixed-side" style="height:100%">
+      <a class="navbar-brand" routerLink="./dashboard">{{project.shortName}}</a>
+      <ul class="nav flex-column">
+        <li class="nav-item" *ngFor="let item of menu">
+          <a class="nav-link" [ngClass]="item.disabled ? 'disabled' : ''" [routerLink]="item.routerLink" routerLinkActive="active">
+            <i class="fa" [ngClass]="item.icon" aria-hidden="true"></i> {{item.label}}
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="col">
+    <router-outlet></router-outlet>
+  </div>
+</div>-->

@@ -1,0 +1,14 @@
+.dropHere {
+  background-color: #a8eda6;
+}
+
+.transparentBorder {
+  border-color: transparent;
+  border-width: 5px;
+  border-style: dotted;
+  transition: border-color 0.5s;
+}
+
+.dragHint {
+  border-color: #48a045;
+}

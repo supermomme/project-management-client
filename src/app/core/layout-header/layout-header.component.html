@@ -1,0 +1,19 @@
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+  <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed"
+          aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <h1 class="navbar-brand mb-0">Project Management</h1>
+  <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="exCollapsingNavbar2">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" *ngFor="let item of menu">
+        <a class="nav-link" [routerLink]="item.routerLink" routerLinkActive="active">
+          <i class="fa" [ngClass]="item.icon" aria-hidden="true"></i> {{item.label}}
+        </a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav my-2 my-lg-0">
+      <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    </ul>
+  </div>
+</nav>

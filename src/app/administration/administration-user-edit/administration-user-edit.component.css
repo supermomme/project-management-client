@@ -1,0 +1,21 @@
+#camera {
+  display: none;
+  position: absolute;
+  left:50px;
+  top: 50px;
+  z-index: 10;
+}
+
+#picture {
+  position: relative;
+  z-index: 1;
+  border-radius: 50%;
+}
+
+.imageWrapper:hover #picture {
+  filter: blur(5px);
+}
+
+.imageWrapper:hover #camera {
+  display: block;
+}

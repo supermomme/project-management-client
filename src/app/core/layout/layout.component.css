@@ -1,0 +1,22 @@
+html, body{
+  height:100%;
+}
+
+body{
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.content{
+    position: relative;
+    height: inherit;
+}
+
+.main {
+  min-width:100%;
+  width:100%;
+    top: 50px;
+    bottom: 0;
+    position: absolute;
+}

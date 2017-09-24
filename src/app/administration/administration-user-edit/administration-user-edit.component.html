@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-sm-12">
+
+
+    <div class="form-group row">
+      <label for="picture" class="col-2 col-form-label">Picture</label>
+      <div class="col-10">
+        <!--<img id="picture" [src]="picture"/>-->
+        <div class="imageWrapper" style="position: relative; width: 195px; height: 195px;" (click)="changePicture()">
+          <img id="picture" [src]="picture" width="200" height="200" />
+          <img id="camera" src="/assets/img/camera.png" width="100" height="100" />
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <label for="firstname-input" class="col-2 col-form-label">Firstname</label>
+      <div class="col-10">
+        <input class="form-control" type="text" id="firstname-input" [(ngModel)]="user.firstname">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="lastname-input" class="col-2 col-form-label">Lastname</label>
+      <div class="col-10">
+        <input class="form-control" type="text" id="lastname-input" [(ngModel)]="user.lastname">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="email-input" class="col-2 col-form-label">Email</label>
+      <div class="col-10">
+        <input class="form-control" type="email" id="email-input" [(ngModel)]="user.email">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="role-select" class="col-2 col-form-label">Role</label>
+      <div class="col-10">
+        <select id="role-select" class="form-control custom-select" (change)="user.role = $event.target.value">
+          <option *ngFor="let role of roles" [value]="role._id" [selected]="user.role?._id === role._id">{{role.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="activated-input" class="col-2 col-form-label">Activated</label>
+      <div class="col-10">
+        <input type="checkbox" id="activated-input" [(ngModel)]="user.activated" />
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-success btn-block" (click)="save()">Save</button>
+
+
+
+  </div>
+  <div class="col-sm-12">
+    <div class="card card-outline-warning mt-5">
+      <div class="card-header">
+        <h3>Entwicklerinformationen: User</h3>
+      </div>
+      <div class="card-block">
+        <pre>{{user | json }}</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
+    <div class="card card-outline-warning mt-5">
+      <div class="card-header">
+        <h3>Entwicklerinformationen: Roles</h3>
+      </div>
+      <div class="card-block">
+        <pre>{{roles | json }}</pre>
+      </div>
+    </div>
+  </div>
+</div>
