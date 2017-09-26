@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from "primeng/primeng";
 
 @Component({
   selector: 'app-administration-layout',
@@ -8,7 +7,7 @@ import { MenuItem } from "primeng/primeng";
 })
 export class AdministrationLayoutComponent implements OnInit {
 
-  private menu: MenuItem[];
+  private menu: any;
 
   constructor() { }
 
