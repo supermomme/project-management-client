@@ -32,6 +32,9 @@ export class FeathersService {
     this.socket.io.on('connect_error', err => {
       this.toastrService.error('Verbindung zum Server verloren\nWiederaufbau...', 'Verbindungsfehler');
     });
+    this.socket.on('connect', () => {
+      console.log(`Connected to ${this.socketUrl}`)
+    });
     this.socket.io.on('reconnect', (attemptNumber) => {
       this.toastrService.success('Verbindung zum Server wurde wieder hergestellt', 'Verbindung hergestellt');
     });
