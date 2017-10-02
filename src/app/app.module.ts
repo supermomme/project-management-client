@@ -16,11 +16,10 @@ const appRoutes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    //canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     children: [
       { path: '', redirectTo: '/admin', pathMatch: 'full' },
       { path: 'admin', loadChildren: 'app/administration/administration.module#AdministrationModule'},
-      //{ path: 'kanban', loadChildren: 'app/kanban/kanban.module#KanbanModule' },
       { path: 'project', loadChildren: 'app/project/project.module#ProjectModule' },
     ]
   },

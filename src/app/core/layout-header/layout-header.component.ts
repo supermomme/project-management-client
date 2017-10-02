@@ -14,7 +14,6 @@ export class LayoutHeaderComponent implements OnInit {
 
   private menu = [
     { label: 'Admin', routerLink: '/admin' },
-    { label: 'Kanban', routerLink: '/kanban' },
     { label: 'Project', routerLink: '/project' },
   ];
 

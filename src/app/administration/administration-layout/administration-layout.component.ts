@@ -14,7 +14,6 @@ export class AdministrationLayoutComponent implements OnInit {
   ngOnInit() {
     this.menu = [
       {label: 'Users', icon: 'fa-vcard', routerLink: '/admin/user' },
-      {label: 'Roles', icon: 'fa-list', routerLink: '/admin/role' },
       {label: 'Kanban', icon: 'fa-list', routerLink: '/admin/kanban', disabled: true },
       {label: 'Kanban-Status', icon: 'fa-list', routerLink: '/admin/kanban-status', disabled: true },
       {label: 'Kanban-Task', icon: 'fa-list', routerLink: '/admin/kanban-task', disabled: true },

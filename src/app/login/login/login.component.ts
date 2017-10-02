@@ -10,7 +10,7 @@ import { AuthGuardService } from '../../feathers/auth-guard.service';
 })
 export class LoginComponent implements OnInit {
 
-  private email: String = "";
+  private username: String = "";
   private password: String = "";
 
   constructor(
@@ -21,25 +21,26 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.authGuard.authenticate()
-    .then(user=>this.router.navigate(['admin']))
+    .then(user=>this.router.navigate(['project']))
     .catch(err=>{})
   }
 
   login() {
     this.authGuard.authenticate({
       strategy:'local',
-      email:this.email,
+      username:this.username,
       password:this.password
     })
     .then(user=>{
       console.log(user)
-      this.toastrService.success(`Guten Tag ${user.firstname}`, 'Eingeloggt');
-      this.router.navigate(['admin'])
+      this.toastrService.success(`Hello ${user.firstname}`, 'Logged in');
+      this.router.navigate(['project'])
     })
     .catch(res=>{
       if (res.code === 400 ||res.code === 401) {
-        this.toastrService.error('', 'Login ist falsch!');
+        this.toastrService.error('', 'Wrong Login!');
       } else {
+        console.log(res)
         this.toastrService.error('Bitte wenden sie sich an einen Administrator', 'Es ist uns ein Fehler unterlaufen');
       }
     })

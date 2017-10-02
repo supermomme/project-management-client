@@ -48,7 +48,9 @@ export class FeathersService {
 
   authenticate(opts?: any) {
     return this.app.authenticate(opts)
+    .then(res=>{console.log(res);return res;})
     .then(response => this.app.passport.verifyJWT(response.accessToken))
+    .then(res=>{console.log(res);return res;})
     .then(payload => this.app.service('users').get(payload.userId))
     .then(user => {
       this.app.set('user', user);

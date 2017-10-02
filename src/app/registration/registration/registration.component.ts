@@ -29,7 +29,7 @@ export class RegistrationComponent implements OnInit {
         .create({firstname:this.user.firstname,lastname:this.user.lastname,username:this.user.username,email:this.user.email,password:this.user.password})
         .then((res)=>{
           this.toastrService.success('Checke nun deine Emails', 'Erfolgreich Registriert');
-          this.router.navigate(['dashboard'])
+          this.router.navigate(['login'])
         })
         .catch((err)=>{
           console.log(err)
