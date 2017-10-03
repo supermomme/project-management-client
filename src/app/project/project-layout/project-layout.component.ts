@@ -12,7 +12,6 @@ export class ProjectLayoutComponent implements OnInit {
   private project = {};
   private id;
   private sub;
-  private _opened: boolean = true;
   private menu = [
     {label: 'Dashboard', icon: 'fa-tachometer', routerLink: './dashboard' },
     {label: 'Kanban', icon: 'fa-tasks', routerLink: './kanban' },

@@ -1,26 +1,60 @@
-<div class="row mt-3 container">
-  <div
-    class="col ml-2 transparentBorder"
-    *ngFor="let status of statuses"
-    droppable
-    (onDrop)="onDrop($event, status._id)"
-    [dragOverClass]="'dropHere'"
-    [dragHintClass]="'dragHint'">
-    <h5>{{status.name}} <a class="fa fa-plus-circle" (click)="addNewTask(addNewTaskContent, status._id)"></a></h5>
-    <ng-container *ngFor="let task of tasks">
-      <div class="card mb-1" *ngIf="(task['kanban-status'] === status._id)" draggable [dragData]="task" (click)="selectTask(selectTaskConent, task)">
-        <div class="card-block">
-          <h6 class="card-title">{{task.title}}</h6>
+<ng-sidebar-container style="height: calc(100vh - 56px);">
+  <ng-sidebar [(opened)]="_opened" mode="push" position="right">
+    <div class="sidebar">
+      <div class="container">
+
+        <button class="btn btn-default closeButton" (click)="_opened = false">
+          <i class="fa fa-window-close fa-2x"></i>
+        </button>
+        <h4>{{selectedTask.title}}</h4>
+
+        <div class="form-group row">
+          <strong class="col-3">Title</strong>
+          <div class="col-9">{{selectedTask.title}}</div>
         </div>
+        <div class="form-group row">
+          <strong class="col-3">Description</strong>
+          <div class="col-9">{{selectedTask.description}}</div>
+        </div>
+        <div class="form-group row">
+          <strong class="col-3">Priority</strong>
+          <div class="col-9">{{selectedTask.priority}}</div>
+        </div>
+        <button class="btn btn-warning" (click)="editSelectedTask(editTaskContent)">Edit</button>
+
       </div>
-    </ng-container>
+    </div>
+  </ng-sidebar>
+
+  <div ng-sidebar-content>
+    <div class="row mt-3 container">
+      <div
+        class="col ml-2 transparentBorder"
+        *ngFor="let status of statuses"
+        droppable
+        (onDrop)="onDrop($event, status._id)"
+        [dragOverClass]="'dropHere'"
+        [dragHintClass]="'dragHint'">
+        <h5>{{status.name}} <a class="fa fa-plus-circle" (click)="addNewTask(editTaskContent, status._id)"></a></h5>
+        <ng-container *ngFor="let task of tasks">
+          <div class="card mb-1" *ngIf="(task['kanban-status'] === status._id)" draggable [dragData]="task" (click)="selectTask(task)">
+            <div class="card-block">
+              <h6 class="card-title">{{task.title}}</h6>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
   </div>
-</div>
+</ng-sidebar-container>
+
+
+
 
 <!-- addNewTaskConent -->
-<ng-template #addNewTaskContent let-close="close" let-dismiss="dismiss">
+<ng-template #editTaskContent let-close="close" let-dismiss="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">{{newTask.title || ''}}</h4>
+    <h4 class="modal-title">{{selectedTask.title || ''}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="dismiss()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -30,59 +64,27 @@
     <div class="form-group row">
       <label for="title-input" class="col-3 col-form-label">Title</label>
       <div class="col-9">
-        <input class="form-control" type="text" id="title-input" [(ngModel)]="newTask.title">
+        <input class="form-control" type="text" id="title-input" [(ngModel)]="selectedTask.title">
       </div>
     </div>
     <div class="form-group row">
       <label for="description-input" class="col-3 col-form-label">Description</label>
       <div class="col-9">
-        <textarea class="form-control" type="text" id="description-input" [(ngModel)]="newTask.description" ></textarea>
+        <textarea class="form-control" type="text" id="description-input" [(ngModel)]="selectedTask.description" ></textarea>
       </div>
     </div>
     <div class="form-group row">
       <label for="priority-input" class="col-3 col-form-label">Priority</label>
       <div class="col-9">
-        <input class="form-control" type="number" id="priority-input" [(ngModel)]="newTask.priority">
+        <input class="form-control" type="number" id="priority-input" [(ngModel)]="selectedTask.priority">
       </div>
-    </div>
-
-    <pre>{{ newTask |json }}</pre>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-success" (click)="close()">Add</button>
-    <button type="button" class="btn btn-outline-danger" (click)="dismiss()">Close</button>
-  </div>
-</ng-template>
-
-
-<!-- selectTaskConent -->
-<ng-template #selectTaskConent let-close="close" let-dismiss="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title">{{selectedTask.title}}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="dismiss()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-
-    <div class="form-group row">
-      <strong class="col-3">Title</strong>
-      <div class="col-9">{{selectedTask.title}}</div>
-    </div>
-    <div class="form-group row">
-      <strong class="col-3">Description</strong>
-      <div class="col-9">{{selectedTask.description}}</div>
-    </div>
-    <div class="form-group row">
-      <strong class="col-3">Priority</strong>
-      <div class="col-9">{{selectedTask.priority}}</div>
     </div>
 
     <pre>{{ selectedTask |json }}</pre>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-success" (click)="close()">Add</button>
-    <button type="button" class="btn btn-outline-warning" (click)="close('edit')">Edit</button>
+    <button type="button" class="btn btn-outline-success" (click)="close()" *ngIf="selectedTask.new">Add</button>
+    <button type="button" class="btn btn-outline-success" (click)="close()" *ngIf="!selectedTask.new">Edit</button>
     <button type="button" class="btn btn-outline-danger" (click)="dismiss()">Close</button>
   </div>
 </ng-template>

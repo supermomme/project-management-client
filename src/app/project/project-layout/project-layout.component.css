@@ -1,3 +1,9 @@
-.sidebar {
-  background-color: #292B2C;
+.leftSidebarNav {
+  position: fixed;
+  width: 200px;
+  height: 100%;
+}
+
+.mainContent {
+  margin-left: 200px;
 }

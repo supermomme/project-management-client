@@ -11,7 +11,7 @@ import { SidebarModule } from 'ng-sidebar';
   imports: [
     CommonModule,
     FormsModule,
-    ToastrModule.forRoot({positionClass: 'toast-bottom-right', progressBar:true}),
+    ToastrModule.forRoot({positionClass: 'toast-bottom-left', progressBar:true}),
     NgbModule.forRoot(),
     RouterModule,
     Ng2DragDropModule.forRoot(),

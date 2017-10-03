@@ -16,8 +16,10 @@ export class ProjectKanbanComponent implements OnInit {
     private tasks = []
     private projectId;
     private subProjectId;
-    private newTask = {};
     private selectedTask = {};
+    private editTask = {};
+
+    private _opened: boolean = false;
 
     constructor(
       private feathers: FeathersService,
@@ -88,20 +90,33 @@ export class ProjectKanbanComponent implements OnInit {
     }
 
     addNewTask(content, statusId: String) {
-      this.newTask['kanban-status'] = statusId;
+      this._opened = false;
+      this.selectedTask = {};
+      this.selectedTask['kanban-status'] = statusId;
+      this.selectedTask['new'] = true;
       this.modalService.open(content).result.then(() => {
-        this.feathers.service('kanban-task').create(this.newTask)
+        delete this.selectedTask['new'];
+        console.log("Final",this.selectedTask)
+        this.feathers.service('kanban-task').create(this.selectedTask)
         .then(res => console.log(res))
         .catch(err => console.error(err))
-      },() => { this.newTask = {} })
+      },() => { this.selectedTask = {} })
     }
 
-    selectTask(content, task) {
+    editSelectedTask(content) {
+      this.selectedTask['new'] = false;
+      this.modalService.open(content).result.then(() => {
+        delete this.selectedTask['new'];
+        console.log("Final",this.selectedTask)
+        this.feathers.service('kanban-task').patch(this.selectedTask['_id'], this.selectedTask)
+        .then(res => console.log(res))
+        .catch(err => console.error(err))
+      },() => {})
+    }
+
+    selectTask(task) {
+      this._opened = true;
       this.selectedTask = task
-      this.modalService.open(content).result.then((reason) => {
-        if (reason !== "edit") { this.selectedTask = {}; return; }
-        console.log("EDIT")
-      },() => { this.selectedTask = {} })
     }
 
 }

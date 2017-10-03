@@ -12,3 +12,18 @@
 .dragHint {
   border-color: #48a045;
 }
+
+.sidebar {
+  background-color: #DFDCE3;
+  border-left-style: solid;
+  border-left-width: 3px;
+  border-left-color: #292B2C;
+  height: 100%;
+  width: 350px;
+}
+
+.closeButton {
+  position: fixed;
+  background-color:transparent;
+  right: 5px;
+}
