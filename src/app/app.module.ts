@@ -25,6 +25,7 @@ const appRoutes: Routes = [
   },
   { path: 'login', loadChildren: 'app/login/login.module#LoginModule' },
   { path: 'registration', loadChildren: 'app/registration/registration.module#RegistrationModule' },
+  { path: 'activate', loadChildren: 'app/activation/activation.module#ActivationModule' },
   { path: '404', component: NotFoundPageComponent },
   { path: '**', redirectTo: '404' }
 ];

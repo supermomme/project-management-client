@@ -1,0 +1,32 @@
+<mat-card class="container mt-5md-whiteframe-9dp">
+  <ng-template [ngIf]="activated === true">
+    <mat-card-title>Account aktiviert!</mat-card-title>
+    <mat-card-content>
+      Dein Account, mit dem Username {{user.username}}, wurde unter dem Namen {{user.firstname}} {{user.lastname}} aktiviert
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="goToLogin()">Login</button>
+    </mat-card-actions>
+  </ng-template>
+
+  <ng-template [ngIf]="activated === false">
+    <mat-card-title>Account aktivierung nicht möglich!</mat-card-title>
+    <mat-card-content>
+      Dieser Account wurde schon aktiviert oder existiert nicht!
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="goToRegistration()">Registrieren</button>
+      <button mat-raised-button color="primary" (click)="goToLogin()">Login</button>
+    </mat-card-actions>
+  </ng-template>
+
+  <ng-template [ngIf]="activated === null">
+    <mat-card-title></mat-card-title>
+    <mat-card-content>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="goToRegistration()">Registrieren</button>
+      <button mat-raised-button color="primary" (click)="goToLogin()">Login</button>
+    </mat-card-actions>
+  </ng-template>
+</mat-card>
